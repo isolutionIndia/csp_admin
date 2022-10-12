@@ -13,6 +13,12 @@ class Welcome extends CI_Controller
 	}
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load->model('organisation_model');
+
+
+		$organisation = $this->organisation_model->getorganisation();
+
+		$data['organisation'] = $organisation;
+		$this->load->view('welcome_message', $data);
 	}
 }

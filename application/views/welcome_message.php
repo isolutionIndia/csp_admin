@@ -8,9 +8,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<!-- Favicon icon -->
-	<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-	<title>Sea Food Management System</title>
+	<link rel="icon" type="image/png" sizes="16x16" href="<?php echo (!empty($errorImageUpload)) ? $errorImageUpload : ''; ?>
+
+<?php if ($organisation['image'] != ""  && file_exists('./uploads/organisation/thumb_admin/' . $organisation['image']) && file_exists('./uploads/organisation/thumb_front/' . $organisation['image'])) { ?>
+	<?php echo base_url() . 'uploads/organisation/thumb_admin/' . $organisation['image']; ?>
+
+	<?php } else { ?>
+		<?php echo base_url() . 'uploads/assets/images/background/super.jpg' ?>
+		<?php } ?>">
+	<title>ADMIN</title>
 
 	<!-- page css -->
 	<link href="<?php echo base_url(); ?>uploads/dist/css/pages/login-register-lock.css" rel="stylesheet">
@@ -39,11 +47,28 @@
 	<!-- ============================================================== -->
 	<!-- Main wrapper - style you can find in pages.scss -->
 	<!-- ============================================================== -->
-	<section id="wrapper" class="login-register login-sidebar" style="background-image:url(<?php echo base_url(); ?>uploads/assets/images/background/super.jpg);">
+	<section id="wrapper" class="login-register login-sidebar" style="background-image:url(<?php echo (!empty($errorImageUpload)) ? $errorImageUpload : ''; ?>
+
+<?php if ($organisation['image'] != ""  && file_exists('./uploads/organisation/thumb_admin/' . $organisation['image']) && file_exists('./uploads/organisation/thumb_front/' . $organisation['image'])) { ?>
+	<?php echo base_url() . 'uploads/organisation/' . $organisation['image']; ?>
+
+	<?php } else { ?>
+		<?php echo base_url() . 'uploads/assets/images/background/super.jpg' ?>
+		<?php } ?>);">
 		<div class="login-box card">
 			<div class="card-body">
 				<form method="post" class="form-horizontal form-material text-center" id="loginform" action="<?php echo base_url(); ?>super/login/">
-					<a href="javascript:void(0)" class="db"><img src="<?php echo base_url(); ?>uploads/assets/images/logo-icon.png" alt="Home" /><br /><img src="<?php echo base_url(); ?>uploads/assets/images/logo-text.png" alt="Home" /></a>
+					<a href="javascript:void(0)" class="db"><img src="<?php echo (!empty($errorImageUpload)) ? $errorImageUpload : ''; ?>
+
+<?php if ($organisation['image'] != ""  && file_exists('./uploads/organisation/thumb_admin/' . $organisation['image']) && file_exists('./uploads/organisation/thumb_front/' . $organisation['image'])) { ?>
+	<?php echo base_url() . 'uploads/organisation/thumb_admin/' . $organisation['image']; ?>
+
+	<?php } else { ?>
+		<?php echo base_url() . 'uploads/assets/images/background/super.jpg' ?>
+		<?php } ?>" alt="Home" />
+						<br />
+						<h2>ADMIN</h2>
+					</a>
 					<?php if ($this->session->flashdata('error')) { ?>
 						<p style="color:red"><?php echo $this->session->flashdata('error'); ?></p>
 					<?php } ?>

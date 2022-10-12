@@ -67,7 +67,7 @@
 					<!-- User Profile -->
 					<!-- ============================================================== -->
 					<li class="nav-item dropdown u-pro">
-						<a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url(); ?>uploads/assets/images/users/1.jpg" alt="user" class=""> <span class="hidden-md-down">Mark
+						<a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url(); ?>uploads/assets/images/users/1.jpg" alt="user" class=""> <span class="hidden-md-down"><?php echo $this->session->userdata('name'); ?>
 								&nbsp;<i class="fa fa-angle-down"></i></span> </a>
 						<div class="dropdown-menu dropdown-menu-right animated flipInY">
 							<!-- text-->
@@ -113,44 +113,59 @@
 								<span class="badge badge-pill badge-cyan ml-auto">4</span></span></a>
 						<ul aria-expanded="false" class="collapse">
 							<li><a href="overview-dashboard.php">Overview </a></li>
-							<li><a href="sales-forecast-dashboard.php">Sales Forcast</a></li>
-							<li><a href="production-overview.php">Production</a></li>
-							<li><a href="inventory-dashbaord.php">Inventory</a></li>
-						</ul>
-					</li>
-					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Purchase</span></a>
-						<ul aria-expanded="false" class="collapse">
-							<li><a href="vendors.php">Vendors</a></li>
-							<li><a href="purchases.php">All Purhases</a></li>
-						</ul>
-					</li>
-					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Process</span></a>
-						<ul aria-expanded="false" class="collapse">
-							<li><a href="all-processes.php">All Processes</a></li>
 
 						</ul>
 					</li>
-					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Stock</span></a>
+					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Application</span></a>
 						<ul aria-expanded="false" class="collapse">
-							<li><a href="all-stocks.php">All Stocks</a></li>
+							<li><a href="#">All Application</a></li>
+							<li><a href="#">Active Application</a></li>
+							<li><a href="#">Inactive Application</a></li>
+							<li><a href="#">Today's Application</a></li>
+							<li><a href="#">Add Application</a></li>
+						</ul>
+					</li>
+					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Approval Letters</span></a>
+						<ul aria-expanded="false" class="collapse">
+							<li><a href="#">All Approval Letters</a></li>
+							<li><a href="#">Add Approval Letter</a></li>
+						</ul>
+					</li>
+					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Invoices</span></a>
+						<ul aria-expanded="false" class="collapse">
+							<li><a href="#">All Invoices</a></li>
+							<li><a href="#">Add Invoice</a></li>
 
 						</ul>
 					</li>
-					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Sale</span></a>
+					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Service Providers</span></a>
 						<ul aria-expanded="false" class="collapse">
-							<li><a href="all-sales.php">All Sales</a></li>
-
+							<li><a href="#">All Service Providers</a></li>
+							<li><a href="#">Add Service Provider</a></li>
+						</ul>
+					</li>
+					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Services</span></a>
+						<ul aria-expanded="false" class="collapse">
+							<li><a href="#">All Services</a></li>
+							<li><a href="#">Add Services</a></li>
+						</ul>
+					</li>
+					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Bank Accounts</span></a>
+						<ul aria-expanded="false" class="collapse">
+							<li><a href="#">All Accounts</a></li>
+							<li><a href="#">Add Accounts</a></li>
+						</ul>
+					</li>
+					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Employees</span></a>
+						<ul aria-expanded="false" class="collapse">
+							<li><a href="#">All Employees</a></li>
+							<li><a href="#">Add Employees</a></li>
 						</ul>
 					</li>
 					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Setup</span></a>
 						<ul aria-expanded="false" class="collapse">
-							<li><a href="settings.php">Settings</a></li>
-							<li><a href="species.php">Species</a></li>
-							<li><a href="size-types.php">Size Types</a></li>
-							<li><a href="sizes.php">Sizes</a></li>
-							<li><a href="units.php">Units</a></li>
-							<li><a href="yield-settings.php">Yield Settings</a></li>
-							<li><a href="raw-material-sources.php">Raw Material Sources</a></li>
+							<li><a href="<?php echo base_url(); ?>super/settings/organisation">Settings</a></li>
+
 
 						</ul>
 					</li>

@@ -240,8 +240,7 @@
 </body>
 
 
-<h1><?php //echo $this->session->userdata('name'); 
-	?></h1>
+
 
 
 </html>
