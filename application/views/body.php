@@ -112,7 +112,7 @@
 					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Dashboard
 								<span class="badge badge-pill badge-cyan ml-auto">4</span></span></a>
 						<ul aria-expanded="false" class="collapse">
-							<li><a href="overview-dashboard.php">Overview </a></li>
+							<li><a href="<?php echo base_url(); ?>super/dashboard">Overview </a></li>
 
 						</ul>
 					</li>
@@ -140,7 +140,7 @@
 					</li>
 					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Service Providers</span></a>
 						<ul aria-expanded="false" class="collapse">
-							<li><a href="#">All Service Providers</a></li>
+							<li><a href="<?php echo base_url(); ?>super/serviceprovider">All Service Providers</a></li>
 							<li><a href="#">Add Service Provider</a></li>
 						</ul>
 					</li>

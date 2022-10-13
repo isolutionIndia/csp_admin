@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>uploads/assets/images/favicon.png">
     <title>ADMIN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css" integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="<?php echo base_url(); ?>uploads/assets/node_modules/bootstrap-switch/bootstrap-switch.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?php echo base_url(); ?>uploads/dist/css/style.min.css" rel="stylesheet">
