@@ -183,3 +183,10 @@
 	<!-- Page wrapper  -->
 	<!-- ============================================================== -->
 	<div class="page-wrapper">
+		<?php if ($this->session->flashdata('success') != "") { ?>
+			<div class="alert alert-success " id=""><?php echo $this->session->flashdata('success') ?></div>
+
+		<?php } ?>
+		<?php if ($this->session->flashdata('error') != "") { ?>
+			<div class="alert alert-danger"><?php echo $this->session->flashdata('error') ?></div>
+		<?php } ?>

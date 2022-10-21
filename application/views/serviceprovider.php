@@ -19,7 +19,7 @@
 		<!-- ============================================================== -->
 		<div class="row page-titles">
 			<div class="col-md-5 align-self-center">
-				<h4 class="text-themecolor">Manage Service Providers</h4>
+				<h3 class="text-themecolor">Manage Service Providers</h3>
 			</div>
 			<div class="col-md-7 align-self-center text-right">
 				<div class="d-flex justify-content-end align-items-center">
@@ -37,7 +37,7 @@
 		<!-- ============================================================== -->
 		<!-- Start Page Content -->
 		<!-- ============================================================== -->
-		<form novalidate="">
+		<form novalidate="" method="post" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-sm-12 col-md-12 col-lg-4  bt-switch">
 					<div class="card">
@@ -46,22 +46,21 @@
 							<div class="form-group">
 								<label>Service Provider Name <span class="text-danger">*</span></label>
 								<div class="controls">
-									<input type="text" name="Service Provider-name" class="form-control" required="" data-validation-required-message="This is required" aria-invalid="false">
+									<input type="text" name="ServiceProvidername" class="form-control <?php echo (form_error('ServiceProvidername') != "") ? 'is-invalid' : '' ?>" value="<?php echo set_value('ServiceProvidername') ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
 									<div class="help-block"></div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label>Service Provider email <span class="text-danger">*</span></label>
 								<div class="controls">
-									<input type="number" id="Service Provider-email" name="Service Provider-email" minlength="10" maxlength="10" value="<?php echo set_value('company_phone', $organisation['company_phone']) ?>" class="form-control <?php echo (form_error('company_phone')) ? 'is-invalid' : '' ?>" placeholder="10 digit mobile No." required="" data-validation-required-message="This is required" aria-invalid="false">
-									<input type="email" name="" class="form-control" required="" data-validation-required-message="This is required" aria-invalid="false">
+									<input type="email" id="ServiceProvideremail" name="ServiceProvideremail" class="form-control <?php echo (form_error('ServiceProvideremail') != "") ? 'is-invalid' : '' ?>" value="<?php echo set_value('ServiceProvideremail') ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
 									<div class="help-block"></div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label>Service Provider Phone number <span class="text-danger">*</span></label>
 								<div class="controls">
-									<input type="number" name="Service Provider-phonenumber" class="form-control" required="" data-validation-required-message="This is required" aria-invalid="false">
+									<input type="number" id="ServiceProviderphonenumber" name="ServiceProviderphonenumber" minlength="10" maxlength="10" class="form-control <?php echo (form_error('ServiceProviderphonenumber') != "") ? 'is-invalid' : '' ?>" value="<?php echo set_value('ServiceProviderphonenumber') ?>" placeholder="10 digit mobile No." required="" data-validation-required-message="This is required" aria-invalid="false">
 									<div class="help-block"></div>
 								</div>
 							</div>
@@ -69,14 +68,15 @@
 							<div class="form-group">
 								<label>Service Provider Logo <span class="text-danger">*</span></label>
 								<div class="controls">
-									<input type="file" name="Service Provider-logo" class="form-control" required="" data-validation-required-message="This is required" aria-invalid="false">
+									<input type="file" name="image" class="form-control <?php echo (!empty($errorImageUpload)) ? 'is-invalid' : '' ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
+									<?php echo (!empty($errorImageUpload)) ? $errorImageUpload : ''; ?>
 									<div class="help-block"></div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label>Status</label>
 								<div class="custom-control custom-switch">
-									<input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+									<input type="checkbox" class="custom-control-input" id="customSwitch1" value="1" name="status" checked>
 									<label class="custom-control-label" for="customSwitch1">Active</label>
 								</div>
 							</div>
@@ -97,51 +97,25 @@
 											<th>Service Provider Email</th>
 											<th>Service Provider Phone No</th>
 											<th class="text-center">Status</th>
-											<th class="text-center">Action</th>
+
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td><img src="<?php echo base_url(); ?>uploads/assets/images/favicon.png" alt=""></td>
-											<td>name1</td>
-											<td>email1@mail.com</td>
-											<td>1234567890</td>
-											<td class="text-center"><span class="label label-success">Active</span></td>
-											<td class="text-center"><button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button><button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></button></td>
-										</tr>
-										<tr>
-											<td><img src="<?php echo base_url(); ?>uploads/assets/images/favicon.png" alt=""></td>
-											<td>name2</td>
-											<td>email2.com</td>
-											<td>1234567890</td>
-											<td class="text-center"><span class="label label-success">Active</span></td>
-											<td class="text-center"><button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button><button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></button></td>
-										</tr>
-										<tr>
-											<td><img src="<?php echo base_url(); ?>uploads/assets/images/favicon.png" alt=""></td>
-											<td>name3</td>
-											<td>email3@mail.com</td>
-											<td>1234567890</td>
-											<td class="text-center"><span class="label label-success">Active</span></td>
-											<td class="text-center"><button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button><button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></button></td>
-										</tr>
-										<tr>
-											<td><img src="<?php echo base_url(); ?>uploads/assets/images/favicon.png" alt=""></td>
-											<td>name4</td>
-											<td>email4@mail.com</td>
-											<td>1234567890</td>
-											<td class="text-center"><span class="label label-success">Active</span></td>
-											<td class="text-center"><button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button><button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></button></td>
-										</tr>
-										<tr>
-											<td><img src="<?php echo base_url(); ?>uploads/assets/images/favicon.png" alt=""></td>
-											<td>name5</td>
-											<td>email5@mail.com</td>
-											<td>1234567890</td>
-											<td class="text-center"><span class="label label-danger">Inactive</span>
-											</td>
-											<td class="text-center"><button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button><button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></button></td>
-										</tr>
+										<?php if (!empty($serviceproviders)) { ?>
+											<?php foreach ($serviceproviders as $serviceprovider) { ?>
+												<tr>
+													<td><img src="<?php echo base_url() . 'uploads/serviceprovider/thumb/' . $serviceprovider['Providerlogo']; ?>" alt=""></td>
+													<td><?php echo  $serviceprovider['ServiceProvidername']; ?> <br>
+														<a href="<?php echo base_url() . 'super/serviceprovider/edit/' . $serviceprovider['id']; ?>" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-edit"></i>Edit</a>
+														<a href="javascript::void(0)" onclick="deleteserviceprovider(<?php echo $serviceprovider['id']; ?>);" class="jsgrid-button jsgrid-delete-button"><i class="fas fa-trash-alt"></i>Delete</a>
+													</td>
+													<td><?php echo  $serviceprovider['ServiceProvideremail']; ?></td>
+													<td><?php echo  $serviceprovider['ServiceProviderphonenumber']; ?></td>
+													<td class="text-center"><span class="label label-success">Active</span></td>
+
+												</tr>
+										<?php }
+										} ?>
 
 									</tbody>
 								</table>
@@ -199,6 +173,15 @@
 			$('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass(
 				'btn btn-primary mr-1');
 		});
+	</script>
+	<script>
+		function deleteserviceprovider(id) {
+			if (confirm("Are you sure to delete Service Provider ?")) {
+				window.location.href = '<?php echo base_url() . 'super/serviceprovider/delete/'; ?>' + id;
+
+			}
+
+		}
 	</script>
 
 </body>
