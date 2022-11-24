@@ -101,44 +101,17 @@
 							<div class="form-group">
 								<h5>State <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<select name="state" id="state" required="" class="form-control" aria-invalid="false">
-										<option value="">--Select--</option>
-										<option value="ANDHRA PRADESH">ANDHRA PRADESH</option>
-										<option value="ASSAM">ASSAM</option>
-										<option value="ARUNACHAL PRADESH">ARUNACHAL PRADESH</option>
-										<option value="GUJRAT">GUJRAT</option>
-										<option value="BIHAR">BIHAR</option>
-										<option value="HARYANA">HARYANA</option>
-										<option value="HIMACHAL PRADESH">HIMACHAL PRADESH</option>
-										<option value="JAMMU &amp; KASHMIR">JAMMU &amp; KASHMIR</option>
-										<option value="KARNATAKA">KARNATAKA</option>
-										<option value="KERALA">KERALA</option>
-										<option value="MADHYA PRADESH">MADHYA PRADESH</option>
-										<option value="MAHARASHTRA">MAHARASHTRA</option>
-										<option value="MANIPUR">MANIPUR</option>
-										<option value="MEGHALAYA">MEGHALAYA</option>
-										<option value="MIZORAM">MIZORAM</option>
-										<option value="NAGALAND">NAGALAND</option>
-										<option value="ODISHA" selected="selected">ODISHA</option>
-										<option value="PUNJAB">PUNJAB</option>
-										<option value="RAJASTHAN">RAJASTHAN</option>
-										<option value="SIKKIM">SIKKIM</option>
-										<option value="TAMIL NADU">TAMIL NADU</option>
-										<option value="TRIPURA">TRIPURA</option>
-										<option value="UTTAR PRADESH">UTTAR PRADESH</option>
-										<option value="WEST BENGAL">WEST BENGAL</option>
-										<option value="DELHI">DELHI</option>
-										<option value="GOA">GOA</option>
-										<option value="PONDICHERY">PONDICHERY</option>
-										<option value="LAKSHDWEEP">LAKSHDWEEP</option>
-										<option value="DAMAN &amp; DIU">DAMAN &amp; DIU</option>
-										<option value="DADRA &amp; NAGAR">DADRA &amp; NAGAR</option>
-										<option value="CHANDIGARH">CHANDIGARH</option>
-										<option value="ANDAMAN &amp; NICOBAR">ANDAMAN &amp; NICOBAR</option>
-										<option value="UTTARANCHAL">UTTARANCHAL</option>
-										<option value="JHARKHAND">JHARKHAND</option>
-										<option value="CHATTISGARH">CHATTISGARH</option>
+									<select name="tblstates" id="tblstates" class="form-control <?php echo (form_error('tblstates')) ? 'is-invalid' : '' ?>" required="" class="form-control" aria-invalid="false">
+										<?php if (!empty($tblstate)) {
+											foreach ($tblstate as $tblstates) {
+												$selected = ($organisation['tblstate'] == $tblstates['name']) ? true : false;
+										?>
+
+												<option <?php echo set_select('tblstates', $tblstates['name'], $selected); ?> value="<?php echo $tblstates['name']; ?>"><?php echo $tblstates['name']; ?></option>
+										<?php }
+										} ?>
 									</select>
+									<?php echo form_error('tblstates') ?>
 									<div class="help-block"></div>
 								</div>
 							</div>

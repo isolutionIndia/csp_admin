@@ -9,10 +9,16 @@ class Login_model extends CI_Model
 			'email' => $info,
 			// 'Password' => $password
 		);
+		$userdata = array(
+			'useremail' => $info,
+			// 'Password' => $password
+		);
 		// $phone = array(
 		// 	'phone' => $info,
 		// 	// 'Password' => $password
 		// );
+		$this->db->where($userdata);
+		$userlogin = $this->db->get('user');
 
 		$this->db->where($data);
 		// $this->db->or_where($phone);
@@ -20,10 +26,20 @@ class Login_model extends CI_Model
 		if ($login != NULL) {
 
 			$valid = $login->row();
+			if ($valid) {
+				$passwd = $this->encrypt->decode($valid->password);
+				if ($passwd == $password) {
+					return $login->row();
+				}
+			} else if ($userlogin != NULL) {
 
-			$passwd = $this->encrypt->decode($valid->password);
-			if ($passwd == $password) {
-				return $login->row();
+				$uservalid = $userlogin->row();
+				if ($uservalid) {
+					$passwd = $this->encrypt->decode($uservalid->password);
+					if ($passwd == $password) {
+						return $userlogin->row();
+					}
+				}
 			}
 		}
 	}

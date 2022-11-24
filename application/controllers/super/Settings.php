@@ -26,7 +26,7 @@ class Settings extends CI_Controller
 
 		$data['organisation'] = $organisation;
 		$data['country'] = $this->organisation_model->getcountry();
-
+		$data['tblstate'] = $this->organisation_model->getstate();
 		$this->load->view('settings', $data);
 	}
 
@@ -65,6 +65,7 @@ class Settings extends CI_Controller
 		$this->form_validation->set_rules('company_gstno', 'company_gstno', 'trim|required');
 		$this->form_validation->set_rules('company_currency', 'company_currency', 'trim|required');
 		$this->form_validation->set_rules('country_code', 'country_code', 'trim|required');
+		$this->form_validation->set_rules('tblstates', 'tblstates', 'trim|required');
 		$this->form_validation->set_rules('host_name', 'host_name', 'trim|required');
 		$this->form_validation->set_rules('port_name', 'port_name', 'trim|required');
 		$this->form_validation->set_rules('user_name', 'user_name', 'trim|required');
@@ -93,6 +94,7 @@ class Settings extends CI_Controller
 					$formArray['company_currency'] = $this->input->post('company_currency');
 					$formArray['company_gstno'] = $this->input->post('company_gstno');
 					$formArray['country_code'] = $this->input->post('country_code');
+					$formArray['tblstate'] = $this->input->post('tblstates');
 					$formArray['host_name'] = $this->input->post('host_name');
 					$formArray['port_name'] = $this->input->post('port_name');
 					$formArray['user_name'] = $this->input->post('user_name');
@@ -127,6 +129,7 @@ class Settings extends CI_Controller
 				$formArray['company_currency'] = $this->input->post('company_currency');
 				$formArray['company_gstno'] = $this->input->post('company_gstno');
 				$formArray['country_code'] = $this->input->post('country_code');
+				$formArray['tblstate'] = $this->input->post('tblstates');
 				$formArray['host_name'] = $this->input->post('host_name');
 				$formArray['port_name'] = $this->input->post('port_name');
 				$formArray['user_name'] = $this->input->post('user_name');

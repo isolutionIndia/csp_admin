@@ -19,14 +19,14 @@
 		<!-- ============================================================== -->
 		<div class="row page-titles">
 			<div class="col-md-5 align-self-center">
-				<h3 class="text-themecolor">Manage Service Providers</h3>
+				<h3 class="text-themecolor">Manage Service</h3>
 			</div>
 			<div class="col-md-7 align-self-center text-right">
 				<div class="d-flex justify-content-end align-items-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
 
-						<li class="breadcrumb-item active">Service Providers</li>
+						<li class="breadcrumb-item active">Service</li>
 					</ol>
 				</div>
 			</div>
@@ -43,28 +43,30 @@
 				<div class="col-sm-12 col-md-12 col-lg-4  bt-switch">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title m-b-30">Add Service Provider</h4>
+							<h4 class="card-title m-b-30">Add Service</h4>
 							<div class="form-group">
 								<label>Name <span class="text-danger">*</span></label>
 								<div class="controls">
-									<input type="text" name="ServiceProvidername" class="form-control <?php echo (form_error('ServiceProvidername') != "") ? 'is-invalid' : '' ?>" value="<?php $ServiceProvidername = $edit != NULL ? $edit['ServiceProvidername'] : '';
-																																															echo set_value('ServiceProvidername', $ServiceProvidername); ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
+									<input type="text" name="service" class="form-control <?php echo (form_error('service') != "") ? 'is-invalid' : '' ?>" value="<?php $service = $edit != NULL ? $edit['service'] : '';
+																																									echo set_value('service', $service); ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
 									<div class="help-block"></div>
 								</div>
 							</div>
+
 							<div class="form-group">
-								<label>Email <span class="text-danger">*</span></label>
+								<h5>Service Provider<span class="text-danger">*</span></h5>
 								<div class="controls">
-									<input type="email" id="ServiceProvideremail" name="ServiceProvideremail" class="form-control <?php echo (form_error('ServiceProvideremail') != "") ? 'is-invalid' : '' ?>" value="<?php $ServiceProvideremail = $edit != NULL ? $edit['ServiceProvideremail'] : '';
-																																																						echo set_value('ServiceProvideremail', $ServiceProvideremail); ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
-									<div class="help-block"></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label>Phone number <span class="text-danger">*</span></label>
-								<div class="controls">
-									<input type="number" id="ServiceProviderphonenumber" name="ServiceProviderphonenumber" minlength="10" maxlength="10" class="form-control <?php echo (form_error('ServiceProviderphonenumber') != "") ? 'is-invalid' : '' ?>" value="<?php $ServiceProviderphonenumber = $edit != NULL ? $edit['ServiceProviderphonenumber'] : '';
-																																																																		echo set_value('ServiceProviderphonenumber', $ServiceProviderphonenumber); ?>" placeholder="10 digit mobile No." required="" data-validation-required-message="This is required" aria-invalid="false">
+									<select name="serviceprovider" id="serviceprovider" class="form-control <?php echo (form_error('serviceprovider')) ? 'is-invalid' : '' ?>" required="" class="form-control" aria-invalid="false">
+										<?php if (!empty($serviceproviders)) {
+											foreach ($serviceproviders as $serviceprovider) {
+												$selected = ($serviceprovider['id'] == $edit['serviceprovider']) ? true : false;
+										?>
+
+												<option <?php echo set_select('serviceprovider', $serviceprovider['id'], $selected); ?> value="<?php echo $serviceprovider['id']; ?>"><?php echo $serviceprovider['ServiceProvidername']; ?></option>
+										<?php }
+										} ?>
+									</select>
+									<?php echo form_error('serviceprovider') ?>
 									<div class="help-block"></div>
 								</div>
 							</div>
@@ -74,7 +76,7 @@
 								<div class="controls">
 									<input type="file" name="image" class="form-control <?php echo (!empty($errorImageUpload)) ? 'is-invalid' : '' ?>">
 									<?php echo (!empty($errorImageUpload)) ? $errorImageUpload : ''; ?>
-									<?php echo $edit != NULL ? '<img src="' . base_url() . 'uploads/serviceprovider/thumb/' . $edit['Providerlogo'] . ' " alt="">' : ''; ?>
+									<?php echo $edit != NULL ? '<img src="' . base_url() . 'uploads/service/thumb/' . $edit['logo'] . ' " alt="">' : ''; ?>
 									<div class="help-block"></div>
 								</div>
 							</div>
@@ -94,30 +96,38 @@
 				<div class="col-sm-12 col-md-12 col-lg-8">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">List of Service Providers</h4>
+							<h4 class="card-title">List of Service</h4>
 							<div class="table-responsive m-t-40">
 								<table id="config-table" class="table display table-bordered table-striped no-wrap">
 									<thead>
 										<tr>
 											<th>Logo</th>
 											<th>Name</th>
-											<th>Email</th>
-											<th>Phone No</th>
+											<th>Service Provider</th>
+
 											<th class="text-center">Status</th>
 
 										</tr>
 									</thead>
 									<tbody>
-										<?php if (!empty($serviceproviders)) { ?>
-											<?php foreach ($serviceproviders as $serviceprovider) { ?>
+										<?php if (!empty($services)) { ?>
+											<?php foreach ($services as $service) { ?>
 												<tr>
-													<td><img src="<?php echo base_url() . 'uploads/serviceprovider/thumb/' . $serviceprovider['Providerlogo']; ?>" alt=""></td>
-													<td><?php echo  $serviceprovider['ServiceProvidername']; ?> <br>
-														<a href="<?php echo base_url() . 'super/serviceprovider/edit/' . $serviceprovider['id']; ?>" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-edit"></i>Edit</a>
-														<a href="javascript::void(0)" onclick="deleteserviceprovider(<?php echo $serviceprovider['id']; ?>);" class="jsgrid-button jsgrid-delete-button"><i class="fas fa-trash-alt"></i>Delete</a>
+													<td><img src="<?php echo base_url() . 'uploads/service/thumb/' . $service['logo']; ?>" alt=""></td>
+													<td><?php echo  $service['service']; ?> <br>
+														<a href="<?php echo base_url() . 'super/service/edit/' . $service['id']; ?>" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-edit"></i>Edit</a>
+														<a href="javascript::void(0)" onclick="deleteservice(<?php echo $service['id']; ?>);" class="jsgrid-button jsgrid-delete-button"><i class="fas fa-trash-alt"></i>Delete</a>
 													</td>
-													<td><?php echo  $serviceprovider['ServiceProvideremail']; ?></td>
-													<td><?php echo  $serviceprovider['ServiceProviderphonenumber']; ?></td>
+													<td><?php if (!empty($serviceproviders)) {
+															foreach ($serviceproviders as $serviceprovider) {
+																if ($serviceprovider['id'] ==  $service['serviceprovider']) {
+																	echo $serviceprovider['ServiceProvidername'];
+																}
+															}
+														} ?>
+													</td>
+
+
 													<td class="text-center"><span class="label label-success">Active</span></td>
 
 												</tr>
@@ -182,9 +192,9 @@
 		});
 	</script>
 	<script>
-		function deleteserviceprovider(id) {
-			if (confirm("Are you sure to delete Service Provider ?")) {
-				window.location.href = '<?php echo base_url() . 'super/serviceprovider/delete/'; ?>' + id;
+		function deleteservice(id) {
+			if (confirm("Are you sure to delete Service ?")) {
+				window.location.href = '<?php echo base_url() . 'super/service/delete/'; ?>' + id;
 
 			}
 

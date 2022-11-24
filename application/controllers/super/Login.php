@@ -25,9 +25,11 @@ class Login extends CI_Controller
 			if ($validate) {
 				$this->session->set_userdata('role', 'admin');
 				$this->session->set_userdata('name', $email);
-				$this->load->view('dashboard');
+				$data['validate'] = $validate;
+				$this->load->view('dashboard', $data);
 			} else {
 				$this->session->set_flashdata('error', 'Invalid login details.Please try again.');
+				//print_r($validate);
 				redirect('welcome');
 			}
 		} else {

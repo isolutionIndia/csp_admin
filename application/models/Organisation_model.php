@@ -30,6 +30,13 @@ class Organisation_model extends CI_Model
 		$country = $this->db->get('country')->result_array();
 		return $country;
 	}
+	public function getstate()
+	{
+
+
+		$tblstates = $this->db->get('tblstates')->result_array();
+		return $tblstates;
+	}
 
 	public function getpurchasecodeprefix()
 	{

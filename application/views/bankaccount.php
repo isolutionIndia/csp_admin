@@ -19,14 +19,14 @@
 		<!-- ============================================================== -->
 		<div class="row page-titles">
 			<div class="col-md-5 align-self-center">
-				<h3 class="text-themecolor">Manage Service Providers</h3>
+				<h3 class="text-themecolor">Manage Bank Accounts</h3>
 			</div>
 			<div class="col-md-7 align-self-center text-right">
 				<div class="d-flex justify-content-end align-items-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
 
-						<li class="breadcrumb-item active">Service Providers</li>
+						<li class="breadcrumb-item active">Bank Accounts</li>
 					</ol>
 				</div>
 			</div>
@@ -37,47 +37,56 @@
 		<!-- ============================================================== -->
 		<!-- Start Page Content -->
 		<!-- ============================================================== -->
+		<?php //print_r($edit); 
+		?>
 		<form novalidate="" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="id" class="form-control <?php echo (form_error('id') != "") ? 'is-invalid' : '' ?>" value="<?php echo  $edit != NULL ? $edit['id'] : ''; ?>">
 			<div class="row">
 				<div class="col-sm-12 col-md-12 col-lg-4  bt-switch">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title m-b-30">Add Service Provider</h4>
+							<h4 class="card-title m-b-30">Add Bank Account</h4>
 							<div class="form-group">
-								<label>Name <span class="text-danger">*</span></label>
+								<label>Bank Account Name <span class="text-danger">*</span></label>
 								<div class="controls">
-									<input type="text" name="ServiceProvidername" class="form-control <?php echo (form_error('ServiceProvidername') != "") ? 'is-invalid' : '' ?>" value="<?php $ServiceProvidername = $edit != NULL ? $edit['ServiceProvidername'] : '';
-																																															echo set_value('ServiceProvidername', $ServiceProvidername); ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
+									<input type="text" name="accountname" class="form-control <?php echo (form_error('accountname') != "") ? 'is-invalid' : '' ?>" value="<?php $accountname = $edit != NULL ? $edit['accountname'] : '';
+																																											echo set_value('accountname', $accountname); ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
 									<div class="help-block"></div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label>Email <span class="text-danger">*</span></label>
+								<label>Bank Account number <span class="text-danger">*</span></label>
 								<div class="controls">
-									<input type="email" id="ServiceProvideremail" name="ServiceProvideremail" class="form-control <?php echo (form_error('ServiceProvideremail') != "") ? 'is-invalid' : '' ?>" value="<?php $ServiceProvideremail = $edit != NULL ? $edit['ServiceProvideremail'] : '';
-																																																						echo set_value('ServiceProvideremail', $ServiceProvideremail); ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
+									<input type="number" id="accountno" name="accountno" class="form-control <?php echo (form_error('accountno') != "") ? 'is-invalid' : '' ?>" value="<?php $accountno = $edit != NULL ? $edit['accountno'] : '';
+																																														echo set_value('accountno', $accountno) ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
 									<div class="help-block"></div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label>Phone number <span class="text-danger">*</span></label>
+								<label>Bank IFSC <span class="text-danger">*</span></label>
 								<div class="controls">
-									<input type="number" id="ServiceProviderphonenumber" name="ServiceProviderphonenumber" minlength="10" maxlength="10" class="form-control <?php echo (form_error('ServiceProviderphonenumber') != "") ? 'is-invalid' : '' ?>" value="<?php $ServiceProviderphonenumber = $edit != NULL ? $edit['ServiceProviderphonenumber'] : '';
-																																																																		echo set_value('ServiceProviderphonenumber', $ServiceProviderphonenumber); ?>" placeholder="10 digit mobile No." required="" data-validation-required-message="This is required" aria-invalid="false">
+									<input type="text" id="ifsc" name="ifsc" class="form-control <?php echo (form_error('ifsc') != "") ? 'is-invalid' : '' ?>" value="<?php $ifsc = $edit != NULL ? $edit['ifsc'] : '';
+																																										echo set_value('ifsc', $ifsc) ?>" placeholder="ifsc No." required="" data-validation-required-message="This is required" aria-invalid="false">
+									<div class="help-block"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Bank Name <span class="text-danger">*</span></label>
+								<div class="controls">
+									<input type="text" id="bankname" name="bankname" class="form-control <?php echo (form_error('bankname') != "") ? 'is-invalid' : '' ?>" value="<?php $bankname = $edit != NULL ? $edit['bankname'] : '';
+																																													echo set_value('bankname', $bankname) ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
+									<div class="help-block"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>Branch Name <span class="text-danger">*</span></label>
+								<div class="controls">
+									<input type="text" id="branchname" name="branchname" class="form-control <?php echo (form_error('branchname') != "") ? 'is-invalid' : '' ?>" value="<?php $branchname = $edit != NULL ? $edit['branchname'] : '';
+																																														echo set_value('branchname', $branchname) ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
 									<div class="help-block"></div>
 								</div>
 							</div>
 
-							<div class="form-group">
-								<label>Logo <span class="text-danger">*</span></label>
-								<div class="controls">
-									<input type="file" name="image" class="form-control <?php echo (!empty($errorImageUpload)) ? 'is-invalid' : '' ?>">
-									<?php echo (!empty($errorImageUpload)) ? $errorImageUpload : ''; ?>
-									<?php echo $edit != NULL ? '<img src="' . base_url() . 'uploads/serviceprovider/thumb/' . $edit['Providerlogo'] . ' " alt="">' : ''; ?>
-									<div class="help-block"></div>
-								</div>
-							</div>
 							<div class="form-group">
 								<label>Status</label>
 								<div class="custom-control custom-switch">
@@ -94,31 +103,35 @@
 				<div class="col-sm-12 col-md-12 col-lg-8">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">List of Service Providers</h4>
+							<h4 class="card-title">List of Bank Accounts</h4>
 							<div class="table-responsive m-t-40">
 								<table id="config-table" class="table display table-bordered table-striped no-wrap">
 									<thead>
 										<tr>
-											<th>Logo</th>
-											<th>Name</th>
-											<th>Email</th>
-											<th>Phone No</th>
+
+											<th>Bank Account Name</th>
+											<th>Bank Account number</th>
+											<th>Bank IFSC</th>
+											<th>Bank Name</th>
+											<th>Branch Name</th>
 											<th class="text-center">Status</th>
 
 										</tr>
 									</thead>
 									<tbody>
-										<?php if (!empty($serviceproviders)) { ?>
-											<?php foreach ($serviceproviders as $serviceprovider) { ?>
+										<?php if (!empty($bankaccounts)) { ?>
+											<?php foreach ($bankaccounts as $bankaccount) { ?>
 												<tr>
-													<td><img src="<?php echo base_url() . 'uploads/serviceprovider/thumb/' . $serviceprovider['Providerlogo']; ?>" alt=""></td>
-													<td><?php echo  $serviceprovider['ServiceProvidername']; ?> <br>
-														<a href="<?php echo base_url() . 'super/serviceprovider/edit/' . $serviceprovider['id']; ?>" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-edit"></i>Edit</a>
-														<a href="javascript::void(0)" onclick="deleteserviceprovider(<?php echo $serviceprovider['id']; ?>);" class="jsgrid-button jsgrid-delete-button"><i class="fas fa-trash-alt"></i>Delete</a>
+
+													<td><?php echo  $bankaccount['accountname']; ?> <br>
+														<a href="<?php echo base_url() . 'super/bankaccount/edit/' . $bankaccount['id']; ?>" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-edit"></i>Edit</a>
+														<a href="javascript::void(0)" onclick="deletebankaccount(<?php echo $bankaccount['id']; ?>);" class="jsgrid-button jsgrid-delete-button"><i class="fas fa-trash-alt"></i>Delete</a>
 													</td>
-													<td><?php echo  $serviceprovider['ServiceProvideremail']; ?></td>
-													<td><?php echo  $serviceprovider['ServiceProviderphonenumber']; ?></td>
-													<td class="text-center"><span class="label label-success">Active</span></td>
+													<td><?php echo  $bankaccount['accountno']; ?></td>
+													<td><?php echo  $bankaccount['ifsc']; ?></td>
+													<td><?php echo  $bankaccount['bankname']; ?></td>
+													<td><?php echo  $bankaccount['branchname']; ?></td>
+													<td class="text-center"><span <?php echo $bankaccount['status'] ? 'class=" label label-success ">Active ' :  'class=" label label-danger ">Inactive'; ?></span></td>
 
 												</tr>
 										<?php }
@@ -146,7 +159,7 @@
 
 
 	<?php $this->load->view('footer'); ?>
-	<script src="<?php echo base_url() . 'uploads/'; ?>dist/js/pages/validation.js"></script>
+	<script src=" <?php echo base_url() . 'uploads/'; ?>dist/js/pages/validation.js"></script>
 	<script>
 		! function(window, document, $) {
 			"use strict";
@@ -182,9 +195,9 @@
 		});
 	</script>
 	<script>
-		function deleteserviceprovider(id) {
-			if (confirm("Are you sure to delete Service Provider ?")) {
-				window.location.href = '<?php echo base_url() . 'super/serviceprovider/delete/'; ?>' + id;
+		function deletebankaccount(id) {
+			if (confirm("Are you sure to delete Bank Account ?")) {
+				window.location.href = '<?php echo base_url() . 'super/bankaccount/delete/'; ?>' + id;
 
 			}
 

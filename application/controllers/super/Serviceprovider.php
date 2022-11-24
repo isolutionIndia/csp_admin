@@ -21,7 +21,7 @@ class Serviceprovider extends CI_Controller
 		$organisation = $this->organisation_model->getorganisation();
 
 		$data['organisation'] = $organisation;
-
+		$data['edit'] = '';
 
 		if ($this->input->post()) {
 
@@ -63,8 +63,12 @@ class Serviceprovider extends CI_Controller
 						$formArray['status'] = 0;
 						$formArray['status'] = $this->input->post('status');
 						$formArray['created_at'] = date('Y-m-d H:i:S');
-						$this->Serviceprovider_model->create($formArray);
-
+						$id = $this->input->post('id');
+						if ($id != NULL) {
+							$this->Serviceprovider_model->update($formArray, $id);
+						} else {
+							$this->Serviceprovider_model->create($formArray);
+						}
 						$this->session->set_flashdata('success', 'Service Provider added Successfully');
 
 						redirect(base_url() . 'super/serviceprovider', $data);
@@ -82,7 +86,12 @@ class Serviceprovider extends CI_Controller
 					$formArray['status'] = 0;
 					$formArray['status'] = $this->input->post('status');
 					$formArray['created_at'] = date('Y-m-d H:i:S');
-					$this->Serviceprovider_model->create($formArray);
+					$id = $this->input->post('id');
+					if ($id != NULL) {
+						$this->Serviceprovider_model->update($formArray, $id);
+					} else {
+						$this->Serviceprovider_model->create($formArray);
+					}
 
 					$this->session->set_flashdata('success', 'Service Provider added Successfully');
 
@@ -97,6 +106,35 @@ class Serviceprovider extends CI_Controller
 		}
 	}
 
+
+	public function edit($edit)
+	{
+
+		if ($edit != NULL) {
+			$this->load->model('organisation_model');
+			$this->load->model('Serviceprovider_model');
+			$Serviceprovider = $this->Serviceprovider_model->getServiceprovider($edit);
+			$data['edit'] = $Serviceprovider;
+			$data['serviceproviders'] = $this->Serviceprovider_model->serviceproviders();
+			$organisation = $this->organisation_model->getorganisation();
+			$data['organisation'] = $organisation;
+			if (empty($Serviceprovider)) {
+				$this->session->set_flashdata('error', 'Service provider not found');
+
+				redirect(base_url() . 'super/serviceprovider');
+			} else {
+
+				$this->load->view('serviceprovider', $data);
+			}
+		} else {
+			$this->session->set_flashdata('error', 'Service provider not found');
+
+			redirect(base_url() . 'super/serviceprovider');
+		}
+		if ($this->input->post()) {
+			$this->index();
+		}
+	}
 
 	public function delete($id)
 	{

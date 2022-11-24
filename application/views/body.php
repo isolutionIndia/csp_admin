@@ -20,7 +20,7 @@
 			<!-- Logo -->
 			<!-- ============================================================== -->
 			<div class="navbar-header">
-				<a class="navbar-brand" href="index.html">
+				<a class="navbar-brand" href="<?php echo base_url(); ?>super/dashboard">
 					<!-- Logo icon --><b>
 						<!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
 						<!-- Dark Logo icon -->
@@ -118,11 +118,8 @@
 					</li>
 					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Application</span></a>
 						<ul aria-expanded="false" class="collapse">
-							<li><a href="#">All Application</a></li>
-							<li><a href="#">Active Application</a></li>
-							<li><a href="#">Inactive Application</a></li>
-							<li><a href="#">Today's Application</a></li>
-							<li><a href="#">Add Application</a></li>
+							<li><a href="<?php echo base_url(); ?>super/application">Application</a></li>
+							<li><a href="<?php echo base_url(); ?>super/applicant">Applicant</a></li>
 						</ul>
 					</li>
 					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Approval Letters</span></a>
@@ -138,6 +135,9 @@
 
 						</ul>
 					</li>
+
+
+
 					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Service Providers</span></a>
 						<ul aria-expanded="false" class="collapse">
 							<li><a href="<?php echo base_url(); ?>super/serviceprovider">All Service Providers</a></li>
@@ -146,26 +146,27 @@
 					</li>
 					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Services</span></a>
 						<ul aria-expanded="false" class="collapse">
-							<li><a href="#">All Services</a></li>
-							<li><a href="#">Add Services</a></li>
+							<li><a href="<?php echo base_url(); ?>super/service">All Services</a></li>
+							<li><a href="<?php echo base_url(); ?>super/service">Add Services</a></li>
 						</ul>
 					</li>
 					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Bank Accounts</span></a>
 						<ul aria-expanded="false" class="collapse">
-							<li><a href="#">All Accounts</a></li>
-							<li><a href="#">Add Accounts</a></li>
+							<li><a href="<?php echo base_url(); ?>super/bankaccount">All Accounts</a></li>
+							<li><a href="<?php echo base_url(); ?>super/bankaccount">Add Accounts</a></li>
 						</ul>
 					</li>
 					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Employees</span></a>
 						<ul aria-expanded="false" class="collapse">
-							<li><a href="#">All Employees</a></li>
-							<li><a href="#">Add Employees</a></li>
+							<li><a href="<?php echo base_url(); ?>super/employee">All Employees</a></li>
+							<li><a href="<?php echo base_url(); ?>super/employee">Add Employees</a></li>
 						</ul>
 					</li>
 					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Setup</span></a>
 						<ul aria-expanded="false" class="collapse">
 							<li><a href="<?php echo base_url(); ?>super/settings/organisation">Settings</a></li>
 
+							<li><a href="<?php echo base_url(); ?>super/user">User</a></li>
 
 						</ul>
 					</li>
