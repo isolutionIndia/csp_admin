@@ -16,10 +16,11 @@ class Applicant extends CI_Controller
 	{
 		$this->load->model('organisation_model');
 		$this->load->model('Applicant_model');
+		$this->load->model('Serviceprovider_model');
 		$data['users'] = $this->Applicant_model->users();
 		$data['roles'] = $this->Applicant_model->roles();
 		$data['tblstate'] = $this->organisation_model->getstate();
-
+		$data['serviceproviders'] = $this->Serviceprovider_model->serviceproviders();
 		$organisation = $this->organisation_model->getorganisation();
 
 		$data['organisation'] = $organisation;
@@ -46,7 +47,7 @@ class Applicant extends CI_Controller
 			$this->form_validation->set_rules('username', 'username', 'required');
 			$this->form_validation->set_rules('useremail', 'useremail', 'required|valid_email');
 			$this->form_validation->set_rules('userphonenumber', 'username', 'required|min_length[10]|max_length[10]');
-			$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
+
 			if ($this->form_validation->run() == TRUE) {
 				//save category to DB
 
@@ -69,11 +70,8 @@ class Applicant extends CI_Controller
 						$formArray['state'] = $this->input->post('state');
 						$formArray['district'] = $this->input->post('district');
 						$formArray['pincode'] = $this->input->post('pincode');
-						$passwordd = $this->input->post('password');
-						$formArray['password'] = $this->encrypt->encode($passwordd);
-						$formArray['status'] = 0;
-						$formArray['role'] = $this->input->post('role');
-						$formArray['status'] = $this->input->post('status');
+						$formArray['serviceprovider'] = $this->input->post('serviceprovider');
+
 						$formArray['created_at'] = date('Y-m-d H:i:S');
 						$id = $this->input->post('id');
 						if ($id != NULL) {
@@ -101,11 +99,10 @@ class Applicant extends CI_Controller
 					$formArray['state'] = $this->input->post('state');
 					$formArray['district'] = $this->input->post('district');
 					$formArray['pincode'] = $this->input->post('pincode');
-					$passwordd = $this->input->post('password');
-					$formArray['password'] = $this->encrypt->encode($passwordd);
-					$formArray['status'] = 0;
-					$formArray['role'] = $this->input->post('role');
-					$formArray['status'] = $this->input->post('status');
+					$formArray['serviceprovider'] = $this->input->post('serviceprovider');
+
+
+
 					$formArray['created_at'] = date('Y-m-d H:i:S');
 					$id = $this->input->post('id');
 					if ($id != NULL) {
@@ -132,6 +129,7 @@ class Applicant extends CI_Controller
 		if ($edit != NULL) {
 			$this->load->model('organisation_model');
 			$this->load->model('Applicant_model');
+			$this->load->model('Serviceprovider_model');
 			$User = $this->Applicant_model->getUser($edit);
 			$data['edit'] = $User;
 			$data['users'] = $this->Applicant_model->users();
@@ -139,6 +137,7 @@ class Applicant extends CI_Controller
 			$organisation = $this->organisation_model->getorganisation();
 			$data['organisation'] = $organisation;
 			$data['tblstate'] = $this->organisation_model->getstate();
+			$data['serviceproviders'] = $this->Serviceprovider_model->serviceproviders();
 			if (empty($User)) {
 				$this->session->set_flashdata('error', 'Applicant not found');
 

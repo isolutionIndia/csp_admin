@@ -13,11 +13,13 @@ class Employee extends CI_Controller
 	}
 	public function index()
 	{
+		$this->load->model('Serviceprovider_model');
 		$this->load->model('organisation_model');
 		$this->load->model('Employee_model');
 		$data['users'] = $this->Employee_model->users();
 		$data['roles'] = $this->Employee_model->roles();
 
+		$data['serviceproviders'] = $this->Serviceprovider_model->serviceproviders();
 		$organisation = $this->organisation_model->getorganisation();
 
 		$data['organisation'] = $organisation;
@@ -63,6 +65,7 @@ class Employee extends CI_Controller
 						$formArray['userphonenumber'] = $this->input->post('userphonenumber');
 						$passwordd = $this->input->post('password');
 						$formArray['password'] = $this->encrypt->encode($passwordd);
+						$formArray['serviceprovider'] = $this->input->post('serviceprovider');
 						$formArray['status'] = 0;
 						$formArray['role'] = $this->input->post('role');
 						$formArray['status'] = $this->input->post('status');
@@ -89,6 +92,7 @@ class Employee extends CI_Controller
 					$formArray['userphonenumber'] = $this->input->post('userphonenumber');
 					$passwordd = $this->input->post('password');
 					$formArray['password'] = $this->encrypt->encode($passwordd);
+					$formArray['serviceprovider'] = $this->input->post('serviceprovider');
 					$formArray['status'] = 0;
 					$formArray['role'] = $this->input->post('role');
 					$formArray['status'] = $this->input->post('status');
@@ -120,12 +124,14 @@ class Employee extends CI_Controller
 		if ($edit != NULL) {
 			$this->load->model('organisation_model');
 			$this->load->model('Employee_model');
+			$this->load->model('Serviceprovider_model');
 			$User = $this->Employee_model->getUser($edit);
 			$data['edit'] = $User;
 			$data['users'] = $this->Employee_model->users();
 			$data['roles'] = $this->Employee_model->roles();
 			$organisation = $this->organisation_model->getorganisation();
 			$data['organisation'] = $organisation;
+			$data['serviceproviders'] = $this->Serviceprovider_model->serviceproviders();
 			if (empty($User)) {
 				$this->session->set_flashdata('error', 'Employee not found');
 

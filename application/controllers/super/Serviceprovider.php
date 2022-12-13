@@ -59,7 +59,15 @@ class Serviceprovider extends CI_Controller
 						$formArray['Providerlogo'] = $data['file_name'];
 						$formArray['ServiceProvidername'] = $this->input->post('ServiceProvidername');
 						$formArray['ServiceProvideremail'] = $this->input->post('ServiceProvideremail');
+						$formArray['ServiceProviderpan'] = $this->input->post('ServiceProviderpan');
+						$formArray['ServiceProvidergst'] = $this->input->post('ServiceProvidergst');
+						$formArray['ServiceProvideraddress'] = $this->input->post('ServiceProvideraddress');
 						$formArray['ServiceProviderphonenumber'] = $this->input->post('ServiceProviderphonenumber');
+						$formArray['host_name'] = $this->input->post('host_name');
+						$formArray['port_name'] = $this->input->post('port_name');
+						$formArray['port_value'] = $this->input->post('port_value');
+						$formArray['user_name'] = $this->input->post('user_name');
+						$formArray['password'] = $this->input->post('password');
 						$formArray['status'] = 0;
 						$formArray['status'] = $this->input->post('status');
 						$formArray['created_at'] = date('Y-m-d H:i:S');
@@ -82,7 +90,15 @@ class Serviceprovider extends CI_Controller
 					//create Service Provider without image
 					$formArray['ServiceProvidername'] = $this->input->post('ServiceProvidername');
 					$formArray['ServiceProvideremail'] = $this->input->post('ServiceProvideremail');
+					$formArray['ServiceProviderpan'] = $this->input->post('ServiceProviderpan');
+					$formArray['ServiceProvidergst'] = $this->input->post('ServiceProvidergst');
+					$formArray['ServiceProvideraddress'] = $this->input->post('ServiceProvideraddress');
 					$formArray['ServiceProviderphonenumber'] = $this->input->post('ServiceProviderphonenumber');
+					$formArray['host_name'] = $this->input->post('host_name');
+					$formArray['port_name'] = $this->input->post('port_name');
+					$formArray['port_value'] = $this->input->post('port_value');
+					$formArray['user_name'] = $this->input->post('user_name');
+					$formArray['password'] = $this->input->post('password');
 					$formArray['status'] = 0;
 					$formArray['status'] = $this->input->post('status');
 					$formArray['created_at'] = date('Y-m-d H:i:S');

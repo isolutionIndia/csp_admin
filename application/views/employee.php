@@ -53,6 +53,24 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<h5>Service Provider<span class="text-danger">*</span></h5>
+								<div class="controls">
+									<select name="serviceprovider" id="serviceprovider" class="form-control <?php echo (form_error('serviceprovider')) ? 'is-invalid' : '' ?>" required="" class="form-control" aria-invalid="false">
+										<option value="">Select Service Provider</option>
+										<?php if (!empty($serviceproviders)) {
+											foreach ($serviceproviders as $serviceprovider) {
+												$selected = ($serviceprovider['id'] == $edit['serviceprovider']) ? true : false;
+										?>
+
+												<option <?php echo set_select('serviceprovider', $serviceprovider['id'], $selected); ?> value="<?php echo $serviceprovider['id']; ?>"><?php echo $serviceprovider['ServiceProvidername']; ?></option>
+										<?php }
+										} ?>
+									</select>
+									<?php echo form_error('serviceprovider') ?>
+									<div class="help-block"></div>
+								</div>
+							</div>
+							<div class="form-group">
 								<label>Email <span class="text-danger">*</span></label>
 								<div class="controls">
 									<input type="email" id="useremail" name="useremail" class="form-control <?php echo (form_error('useremail') != "") ? 'is-invalid' : '' ?>" value="<?php $useremail = $edit != NULL ? $edit['useremail'] : '';
@@ -79,7 +97,7 @@
 							<input type="hidden" name="role" id="role" value="2">
 
 							<div class="form-group">
-								<label>Image <span class="text-danger">*</span></label>
+								<label>Image</label>
 								<div class="controls">
 									<input type="file" name="image" class="form-control <?php echo (!empty($errorImageUpload)) ? 'is-invalid' : '' ?>">
 									<?php echo (!empty($errorImageUpload)) ? $errorImageUpload : ''; ?>
@@ -109,6 +127,7 @@
 									<thead>
 										<tr>
 											<th>Image</th>
+											<th>Serviceprovider</th>
 											<th>Name</th>
 											<th>Email</th>
 											<th>Phone No</th>
@@ -123,9 +142,17 @@
 											<?php foreach ($users as $user) { ?>
 												<tr>
 													<td><img src="<?php echo base_url() . 'uploads/user/thumb/' . $user['userlogo']; ?>" alt=""></td>
+													<td><?php if (!empty($serviceproviders)) {
+															foreach ($serviceproviders as $serviceprovider) {
+																if ($serviceprovider['id'] ==  $user['serviceprovider']) {
+																	echo $serviceprovider['ServiceProvidername'];
+																}
+															}
+														} ?>
+													</td>
 													<td><?php echo  $user['username']; ?> <br>
-														<a href="<?php echo base_url() . 'super/employee/edit/' . $user['id']; ?>" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-edit"></i>Edit</a>
-														<a href="javascript::void(0)" onclick="deleteuser(<?php echo $user['id']; ?>);" class="jsgrid-button jsgrid-delete-button"><i class="fas fa-trash-alt"></i>Delete</a>
+														<a href="<?php echo base_url() . 'super/employee/edit/' . $user['id']; ?>" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-edit"></i></a>
+														<a href="javascript::void(0)" onclick="deleteuser(<?php echo $user['id']; ?>);" class="jsgrid-button jsgrid-delete-button"><i class="fas fa-trash-alt"></i></a>
 													</td>
 													<td><?php echo  $user['useremail']; ?></td>
 													<td><?php echo  $user['userphonenumber']; ?></td>

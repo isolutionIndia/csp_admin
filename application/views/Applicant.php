@@ -19,14 +19,14 @@
 		<!-- ============================================================== -->
 		<div class="row page-titles">
 			<div class="col-md-5 align-self-center">
-				<h3 class="text-themecolor">Manage Applicant</h3>
+				<h3 class="text-themecolor">Manage Enquiries</h3>
 			</div>
 			<div class="col-md-7 align-self-center text-right">
 				<div class="d-flex justify-content-end align-items-center">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
 
-						<li class="breadcrumb-item active">Applicant</li>
+						<li class="breadcrumb-item active">Enquiry</li>
 					</ol>
 				</div>
 			</div>
@@ -43,7 +43,7 @@
 				<div class="col-sm-12 col-md-12 col-lg-4  bt-switch">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title m-b-30">Add Applicant</h4>
+							<h4 class="card-title m-b-30">Add Enquiry</h4>
 							<div class="form-group">
 								<label>Name <span class="text-danger">*</span></label>
 								<div class="controls">
@@ -69,18 +69,18 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label>Aadhar Number<span class="text-danger">*</span></label>
+								<label>Aadhar Number</label>
 								<div class="controls">
-									<input type="text" name="aadharcard" class="form-control <?php echo (form_error('aadharcard') != "") ? 'is-invalid' : '' ?>" value="<?php $aadharcard = $edit != NULL ? $edit['aadharcard'] : '';
-																																										echo set_value('aadharcard', $aadharcard); ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
+									<input type="number" name="aadharcard" minlength="12" maxlength="12" class="form-control <?php echo (form_error('aadharcard') != "") ? 'is-invalid' : '' ?>" value="<?php $aadharcard = $edit != NULL ? $edit['aadharcard'] : '';
+																																																		echo set_value('aadharcard', $aadharcard); ?>" aria-invalid="false">
 									<div class="help-block"></div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label>PAN Number <span class="text-danger">*</span></label>
+								<label>PAN Number</label>
 								<div class="controls">
-									<input type="text" name="pancard" class="form-control <?php echo (form_error('pancard') != "") ? 'is-invalid' : '' ?>" value="<?php $pancard = $edit != NULL ? $edit['pancard'] : '';
-																																									echo set_value('pancard', $pancard); ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
+									<input type="text" name="pancard" minlength="10" maxlength="10" class="form-control <?php echo (form_error('pancard') != "") ? 'is-invalid' : '' ?>" value="<?php $pancard = $edit != NULL ? $edit['pancard'] : '';
+																																																echo set_value('pancard', $pancard); ?>" aria-invalid="false">
 									<div class="help-block"></div>
 								</div>
 							</div>
@@ -96,6 +96,7 @@
 								<h5>State<span class="text-danger">*</span></h5>
 								<div class="controls">
 									<select name="state" id="state" class="form-control <?php echo (form_error('state')) ? 'is-invalid' : '' ?>" required="" class="form-control" aria-invalid="false">
+										<option value="">Select State</option>
 										<?php if (!empty($tblstate)) {
 											foreach ($tblstate as $tblstates) {
 												$selected = ($tblstates['name'] == $edit['state']) ? true : false;
@@ -120,39 +121,33 @@
 							<div class="form-group">
 								<label>Pincode <span class="text-danger">*</span></label>
 								<div class="controls">
-									<input type="text" name="pincode" class="form-control <?php echo (form_error('pincode') != "") ? 'is-invalid' : '' ?>" value="<?php $pincode = $edit != NULL ? $edit['pincode'] : '';
-																																									echo set_value('pincode', $pincode); ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
+									<input type="number" minlength="5" maxlength="5" name="pincode" class="form-control <?php echo (form_error('pincode') != "") ? 'is-invalid' : '' ?>" value="<?php $pincode = $edit != NULL ? $edit['pincode'] : '';
+																																																echo set_value('pincode', $pincode); ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
 									<div class="help-block"></div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label>Password <span class="text-danger">*</span></label>
+								<h5>Service Provider<span class="text-danger">*</span></h5>
 								<div class="controls">
-									<input type="password" name="password" class="form-control <?php echo (form_error('password') != "") ? 'is-invalid' : '' ?>" value="<?php $password = $edit != NULL ? $this->encrypt->decode($edit['password']) : '';
-																																										echo set_value('password', $password); ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
-									<div class="help-block"></div>
-								</div>
-							</div>
-							<input type="hidden" name="role" id="role" value="3">
+									<select name="serviceprovider" id="serviceprovider" class="form-control <?php echo (form_error('serviceprovider')) ? 'is-invalid' : '' ?>" required="" class="form-control" aria-invalid="false">
+										<option value="">Select Service Provider</option>
+										<?php if (!empty($serviceproviders)) {
+											foreach ($serviceproviders as $serviceprovider) {
+												$selected = ($serviceprovider['id'] == $edit['serviceprovider']) ? true : false;
+										?>
 
-							<div class="form-group">
-								<label>Image <span class="text-danger">*</span></label>
-								<div class="controls">
-									<input type="file" name="image" class="form-control <?php echo (!empty($errorImageUpload)) ? 'is-invalid' : '' ?>">
-									<?php echo (!empty($errorImageUpload)) ? $errorImageUpload : ''; ?>
-									<?php echo $edit != NULL ? '<img src="' . base_url() . 'uploads/user/thumb/' . $edit['userlogo'] . ' " alt="">' : ''; ?>
+												<option <?php echo set_select('serviceprovider', $serviceprovider['id'], $selected); ?> value="<?php echo $serviceprovider['id']; ?>"><?php echo $serviceprovider['ServiceProvidername']; ?></option>
+										<?php }
+										} ?>
+									</select>
+									<?php echo form_error('serviceprovider') ?>
 									<div class="help-block"></div>
 								</div>
 							</div>
-							<div class="form-group">
-								<label>Status</label>
-								<div class="custom-control custom-switch">
-									<input type="checkbox" class="custom-control-input" id="customSwitch1" name="status" <?php echo $edit != NULL ? $edit['status'] == NULL ? '' :  'value="1" checked' : 'value="1" checked';
-																															'';
-																															?>>
-									<label class="custom-control-label" for="customSwitch1">Active</label>
-								</div>
-							</div>
+
+
+
+
 							<button type="submit" class="btn btn-success">Submit</button>
 						</div>
 					</div>
@@ -160,24 +155,24 @@
 				<div class="col-sm-12 col-md-12 col-lg-8">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">List of Applicant</h4>
+							<h4 class="card-title">List of Enquiries</h4>
 							<div class="table-responsive m-t-40">
 								<table id="config-table" class="table display table-bordered table-striped no-wrap">
 									<thead>
 										<tr>
-											<th>Image</th>
+											<!-- <th>Image</th> -->
 											<th>Name</th>
 											<th>Email</th>
-											<th>Phone No</th>
+											<th>Phone No.</th>
 											<th>Aadhar</th>
 											<th>PAN</th>
 											<th>Address</th>
 											<th>State</th>
 											<th>District</th>
 											<th>pincode</th>
-											<th>Password</th>
+											<th>Service Provider</th>
 
-											<th class="text-center">Status</th>
+
 
 										</tr>
 									</thead>
@@ -185,10 +180,10 @@
 										<?php if (!empty($users)) { ?>
 											<?php foreach ($users as $user) { ?>
 												<tr>
-													<td><img src="<?php echo base_url() . 'uploads/user/thumb/' . $user['userlogo']; ?>" alt=""></td>
+
 													<td><?php echo  $user['username']; ?> <br>
-														<a href="<?php echo base_url() . 'super/applicant/edit/' . $user['id']; ?>" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-edit"></i>Edit</a>
-														<a href="javascript::void(0)" onclick="deleteuser(<?php echo $user['id']; ?>);" class="jsgrid-button jsgrid-delete-button"><i class="fas fa-trash-alt"></i>Delete</a>
+														<a href="<?php echo base_url() . 'super/applicant/edit/' . $user['id']; ?>" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-edit"></i></a>
+														<a href="javascript::void(0)" onclick="deleteuser(<?php echo $user['id']; ?>);" class="jsgrid-button jsgrid-delete-button"><i class="fas fa-trash-alt"></i></a>
 													</td>
 													<td><?php echo  $user['useremail']; ?></td>
 													<td><?php echo  $user['userphonenumber']; ?></td>
@@ -198,9 +193,14 @@
 													<td><?php echo  $user['state']; ?></td>
 													<td><?php echo  $user['district']; ?></td>
 													<td><?php echo  $user['pincode']; ?></td>
-													<td><?php echo  $this->encrypt->decode($user['password']); ?></td>
-
-													<td class="text-center"><span class="label label-success">Active</span></td>
+													<td><?php if (!empty($serviceproviders)) {
+															foreach ($serviceproviders as $serviceprovider) {
+																if ($serviceprovider['id'] ==  $user['serviceprovider']) {
+																	echo $serviceprovider['ServiceProvidername'];
+																}
+															}
+														} ?>
+													</td>
 
 												</tr>
 										<?php }

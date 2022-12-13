@@ -21,6 +21,48 @@ class Service_model extends CI_Model
 		$this->db->where('id', $id);
 		return $this->db->get('service')->row_array();
 	}
+	public function servicesByprovider($provider)
+	{
+		$this->db->where('serviceprovider', $provider);
+		return $this->db->get('service')->result_array();
+	}
+	public function servicesByproviderinUserid($id = null)
+	{
+		if ($id == null) {
+			return $this->db->get('service')->result_array();
+		} else {
+			$this->db->where('id', $id);
+			$provider = $this->db->get('enquiry')->row_array();
+			$this->db->where('serviceprovider', $provider['serviceprovider']);
+			return $this->db->get('service')->result_array();
+		}
+	}
+	public function detailservicesByproviderinUserid($id = null)
+	{
+		if ($id == null) {
+			return $this->db->get('service')->result_array();
+		} else {
+			$this->db->where('id', $id);
+			$provider = $this->db->get('enquiry')->row_array();
+			$this->db->where('serviceprovider', $provider['serviceprovider']);
+
+			$this->db->join('serviceprovider', 'serviceprovider.id=service.serviceprovider', 'left');
+			return  $this->db->get('service')->result_array();
+		}
+	}
+	public function detailservicesByproviderinApplicationid($id = null)
+	{
+		if ($id == null) {
+			return $this->db->get('service')->result_array();
+		} else {
+			$this->db->where('id', $id);
+			$provider = $this->db->get('application')->row_array();
+			$this->db->where('serviceprovider', $provider['serviceprovider']);
+
+			$this->db->join('serviceprovider', 'serviceprovider.id=service.serviceprovider', 'left');
+			return  $this->db->get('service')->result_array();
+		}
+	}
 	public function update($formArray, $id)
 	{
 		$this->db->where('id', $id);

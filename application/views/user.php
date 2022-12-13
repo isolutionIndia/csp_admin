@@ -45,6 +45,41 @@
 						<div class="card-body">
 							<h4 class="card-title m-b-30">Add User</h4>
 							<div class="form-group">
+								<h5>Role<span class="text-danger">*</span></h5>
+								<div class="controls">
+									<select name="role" id="role" class="form-control <?php echo (form_error('role')) ? 'is-invalid' : '' ?>" required="" class="form-control" aria-invalid="false">
+										<?php if (!empty($roles)) {
+											foreach ($roles as $role) {
+												$selected = ($role['rolepermission'] == $edit['roles']) ? true : false;
+										?>
+
+												<option <?php echo set_select('role', $role['id'], $selected); ?> value="<?php echo $role['rolepermission']; ?>"><?php echo $role['rolename']; ?></option>
+										<?php }
+										} ?>
+									</select>
+									<?php echo form_error('role') ?>
+									<div class="help-block"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<h5>Service Provider<span class="text-danger">*</span></h5>
+								<div class="controls">
+									<select name="serviceprovider" id="serviceprovider" class="form-control <?php echo (form_error('serviceprovider')) ? 'is-invalid' : '' ?>" required="" class="form-control" aria-invalid="false">
+										<option value="">Select Service Provider</option>
+										<?php if (!empty($serviceproviders)) {
+											foreach ($serviceproviders as $serviceprovider) {
+												$selected = ($serviceprovider['id'] == $edit['serviceprovider']) ? true : false;
+										?>
+
+												<option <?php echo set_select('serviceprovider', $serviceprovider['id'], $selected); ?> value="<?php echo $serviceprovider['id']; ?>"><?php echo $serviceprovider['ServiceProvidername']; ?></option>
+										<?php }
+										} ?>
+									</select>
+									<?php echo form_error('serviceprovider') ?>
+									<div class="help-block"></div>
+								</div>
+							</div>
+							<div class="form-group">
 								<label>Name <span class="text-danger">*</span></label>
 								<div class="controls">
 									<input type="text" name="username" class="form-control <?php echo (form_error('username') != "") ? 'is-invalid' : '' ?>" value="<?php $username = $edit != NULL ? $edit['username'] : '';
@@ -76,26 +111,9 @@
 									<div class="help-block"></div>
 								</div>
 							</div>
-							<div class="form-group">
-								<h5>Role<span class="text-danger">*</span></h5>
-								<div class="controls">
-									<select name="role" id="role" class="form-control <?php echo (form_error('role')) ? 'is-invalid' : '' ?>" required="" class="form-control" aria-invalid="false">
-										<?php if (!empty($roles)) {
-											foreach ($roles as $role) {
-												$selected = ($role['rolepermission'] == $edit['roles']) ? true : false;
-										?>
-
-												<option <?php echo set_select('role', $role['id'], $selected); ?> value="<?php echo $role['rolepermission']; ?>"><?php echo $role['rolename']; ?></option>
-										<?php }
-										} ?>
-									</select>
-									<?php echo form_error('serviceprovider') ?>
-									<div class="help-block"></div>
-								</div>
-							</div>
 
 							<div class="form-group">
-								<label>Image <span class="text-danger">*</span></label>
+								<label>Image</label>
 								<div class="controls">
 									<input type="file" name="image" class="form-control <?php echo (!empty($errorImageUpload)) ? 'is-invalid' : '' ?>">
 									<?php echo (!empty($errorImageUpload)) ? $errorImageUpload : ''; ?>
@@ -125,11 +143,12 @@
 									<thead>
 										<tr>
 											<th>Image</th>
+											<th>Roles</th>
+											<th>Serviceprovider</th>
 											<th>Name</th>
-											<th>Email</th>
+											<th>Email / User Name</th>
 											<th>Phone No</th>
 											<th>Password</th>
-											<th>Roles</th>
 											<th class="text-center">Status</th>
 
 										</tr>
@@ -139,13 +158,6 @@
 											<?php foreach ($users as $user) { ?>
 												<tr>
 													<td><img src="<?php echo base_url() . 'uploads/user/thumb/' . $user['userlogo']; ?>" alt=""></td>
-													<td><?php echo  $user['username']; ?> <br>
-														<a href="<?php echo base_url() . 'super/user/edit/' . $user['id']; ?>" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-edit"></i>Edit</a>
-														<a href="javascript::void(0)" onclick="deleteuser(<?php echo $user['id']; ?>);" class="jsgrid-button jsgrid-delete-button"><i class="fas fa-trash-alt"></i>Delete</a>
-													</td>
-													<td><?php echo  $user['useremail']; ?></td>
-													<td><?php echo  $user['userphonenumber']; ?></td>
-													<td><?php echo  $this->encrypt->decode($user['password']); ?></td>
 													<td><?php if (!empty($roles)) {
 															foreach ($roles as $role) {
 																if ($role['rolepermission'] ==  $user['role']) {
@@ -154,6 +166,22 @@
 															}
 														} ?>
 													</td>
+													<td><?php if (!empty($serviceproviders)) {
+															foreach ($serviceproviders as $serviceprovider) {
+																if ($serviceprovider['id'] ==  $user['serviceprovider']) {
+																	echo $serviceprovider['ServiceProvidername'];
+																}
+															}
+														} ?>
+													</td>
+													<td><?php echo  $user['username']; ?> <br>
+														<a href="<?php echo base_url() . 'super/user/edit/' . $user['id']; ?>" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-edit"></i></a>
+														<a href="javascript::void(0)" onclick="deleteuser(<?php echo $user['id']; ?>);" class="jsgrid-button jsgrid-delete-button"><i class="fas fa-trash-alt"></i></a>
+													</td>
+													<td><?php echo  $user['useremail']; ?></td>
+													<td><?php echo  $user['userphonenumber']; ?></td>
+													<td><?php echo  $this->encrypt->decode($user['password']); ?></td>
+
 													<td class="text-center"><span class="label label-success">Active</span></td>
 
 												</tr>

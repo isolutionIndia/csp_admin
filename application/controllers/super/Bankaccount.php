@@ -14,7 +14,9 @@ class Bankaccount extends CI_Controller
 	public function index()
 	{
 		$this->load->model('Bankaccount_model');
+		$this->load->model('Serviceprovider_model');
 		$data['bankaccounts'] = $this->Bankaccount_model->bankaccounts();
+		$data['serviceproviders'] = $this->Serviceprovider_model->serviceproviders();
 		$data['edit'] = '';
 		if ($this->input->post()) {
 
@@ -26,7 +28,7 @@ class Bankaccount extends CI_Controller
 			$this->form_validation->set_rules('branchname', 'Branch Name', 'required');
 			if ($this->form_validation->run() == TRUE) {
 				//$recentdata = $this->input->post();
-				$formarray = ['accountname' => $this->input->post('accountname'), 'accountno' => $this->input->post('accountno'), 'ifsc' => $this->input->post('ifsc'), 'bankname' => $this->input->post('bankname'), 'branchname' => $this->input->post('branchname'), 'status' => $this->input->post('status')];
+				$formarray = ['accountname' => $this->input->post('accountname'), 'accountno' => $this->input->post('accountno'), 'ifsc' => $this->input->post('ifsc'), 'bankname' => $this->input->post('bankname'), 'branchname' => $this->input->post('branchname'), 'serviceprovider' => $this->input->post('serviceprovider'), 'status' => $this->input->post('status')];
 				$id = $this->input->post('id');
 				if ($id != NULL) {
 					//print_r($formarray);
@@ -50,8 +52,10 @@ class Bankaccount extends CI_Controller
 
 		if ($edit != NULL) {
 			$this->load->model('Bankaccount_model');
+			$this->load->model('Serviceprovider_model');
 			$bankaccount = $this->Bankaccount_model->getBankaccount($edit);
 			$data['bankaccounts'] = $this->Bankaccount_model->bankaccounts();
+			$data['serviceproviders'] = $this->Serviceprovider_model->serviceproviders();
 			$data['edit'] = $bankaccount;
 			if (empty($bankaccount)) {
 				$this->session->set_flashdata('error', 'Bank Account not found');

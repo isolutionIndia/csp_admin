@@ -116,61 +116,35 @@
 
 						</ul>
 					</li>
-					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Application</span></a>
-						<ul aria-expanded="false" class="collapse">
-							<li><a href="<?php echo base_url(); ?>super/application">Application</a></li>
-							<li><a href="<?php echo base_url(); ?>super/applicant">Applicant</a></li>
-						</ul>
-					</li>
-					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Approval Letters</span></a>
+					
+					<!-- <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Approval Letters</span></a>
 						<ul aria-expanded="false" class="collapse">
 							<li><a href="#">All Approval Letters</a></li>
 							<li><a href="#">Add Approval Letter</a></li>
 						</ul>
-					</li>
-					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Invoices</span></a>
-						<ul aria-expanded="false" class="collapse">
-							<li><a href="#">All Invoices</a></li>
-							<li><a href="#">Add Invoice</a></li>
-
-						</ul>
-					</li>
-
-
-
-					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Service Providers</span></a>
-						<ul aria-expanded="false" class="collapse">
-							<li><a href="<?php echo base_url(); ?>super/serviceprovider">All Service Providers</a></li>
-							<li><a href="#">Add Service Provider</a></li>
-						</ul>
-					</li>
-					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Services</span></a>
-						<ul aria-expanded="false" class="collapse">
-							<li><a href="<?php echo base_url(); ?>super/service">All Services</a></li>
-							<li><a href="<?php echo base_url(); ?>super/service">Add Services</a></li>
-						</ul>
-					</li>
-					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Bank Accounts</span></a>
-						<ul aria-expanded="false" class="collapse">
-							<li><a href="<?php echo base_url(); ?>super/bankaccount">All Accounts</a></li>
-							<li><a href="<?php echo base_url(); ?>super/bankaccount">Add Accounts</a></li>
-						</ul>
-					</li>
-					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Employees</span></a>
-						<ul aria-expanded="false" class="collapse">
-							<li><a href="<?php echo base_url(); ?>super/employee">All Employees</a></li>
-							<li><a href="<?php echo base_url(); ?>super/employee">Add Employees</a></li>
-						</ul>
-					</li>
+					</li> -->
+					<li> <a class="waves-effect waves-dark" href="<?php echo base_url(); ?>super/applicant" ><i class="ti-layout-grid2"></i><span class="hide-menu">Enquiries</span></a></li>
+					<li> <a class="waves-effect waves-dark" href="<?php echo base_url(); ?>super/application" ><i class="ti-layout-grid2"></i><span class="hide-menu">Applications</span></a></li>
+					
+					<li> <a class="waves-effect waves-dark" href="<?php echo base_url(); ?>super/invoice" ><i class="ti-layout-grid2"></i><span class="hide-menu">Invoices</span></a></li>
+					<?php if ('0' == $this->session->userdata('status')||'1' == $this->session->userdata('status')) {  ?>
+					
+					<li> <a class="waves-effect waves-dark" href="<?php echo base_url(); ?>super/employee" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Employees</span></a></li>
+					
 					<li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Setup</span></a>
 						<ul aria-expanded="false" class="collapse">
+							<?php if ('0' == $this->session->userdata('status')) {  ?>
 							<li><a href="<?php echo base_url(); ?>super/settings/organisation">Settings</a></li>
-
+							 <?php } ?>
+							<li><a href="<?php echo base_url(); ?>super/serviceprovider">Service Providers</a></li>
+                            <li><a href="<?php echo base_url(); ?>super/service">Services</a></li>
+							<li><a href="<?php echo base_url(); ?>super/bankaccount">Bank Accounts</a></li>
+							<?php if ('0' == $this->session->userdata('status')) {  ?>
 							<li><a href="<?php echo base_url(); ?>super/user">User</a></li>
-
+							 <?php } ?>
 						</ul>
 					</li>
-
+            <?php } ?>
 				</ul>
 			</nav>
 			<!-- End Sidebar navigation -->

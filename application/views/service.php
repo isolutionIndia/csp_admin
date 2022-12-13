@@ -40,60 +40,61 @@
 		<form novalidate="" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="id" class="form-control <?php echo (form_error('id') != "") ? 'is-invalid' : '' ?>" value="<?php echo  $edit != NULL ? $edit['id'] : ''; ?>">
 			<div class="row">
-				<div class="col-sm-12 col-md-12 col-lg-4  bt-switch">
-					<div class="card">
-						<div class="card-body">
-							<h4 class="card-title m-b-30">Add Service</h4>
-							<div class="form-group">
-								<label>Name <span class="text-danger">*</span></label>
-								<div class="controls">
-									<input type="text" name="service" class="form-control <?php echo (form_error('service') != "") ? 'is-invalid' : '' ?>" value="<?php $service = $edit != NULL ? $edit['service'] : '';
-																																									echo set_value('service', $service); ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
-									<div class="help-block"></div>
+				<?php if ('0' == $this->session->userdata('status')) {  ?>
+					<div class="col-sm-12 col-md-12 col-lg-4  bt-switch">
+						<div class="card">
+							<div class="card-body">
+								<h4 class="card-title m-b-30">Add Service</h4>
+								<div class="form-group">
+									<label>Name <span class="text-danger">*</span></label>
+									<div class="controls">
+										<input type="text" name="service" class="form-control <?php echo (form_error('service') != "") ? 'is-invalid' : '' ?>" value="<?php $service = $edit != NULL ? $edit['service'] : '';
+																																										echo set_value('service', $service); ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
+										<div class="help-block"></div>
+									</div>
 								</div>
-							</div>
 
-							<div class="form-group">
-								<h5>Service Provider<span class="text-danger">*</span></h5>
-								<div class="controls">
-									<select name="serviceprovider" id="serviceprovider" class="form-control <?php echo (form_error('serviceprovider')) ? 'is-invalid' : '' ?>" required="" class="form-control" aria-invalid="false">
-										<?php if (!empty($serviceproviders)) {
-											foreach ($serviceproviders as $serviceprovider) {
-												$selected = ($serviceprovider['id'] == $edit['serviceprovider']) ? true : false;
-										?>
+								<div class="form-group">
+									<h5>Service Provider<span class="text-danger">*</span></h5>
+									<div class="controls">
+										<select name="serviceprovider" id="serviceprovider" class="form-control <?php echo (form_error('serviceprovider')) ? 'is-invalid' : '' ?>" required="" class="form-control" aria-invalid="false">
+											<?php if (!empty($serviceproviders)) {
+												foreach ($serviceproviders as $serviceprovider) {
+													$selected = ($serviceprovider['id'] == $edit['serviceprovider']) ? true : false;
+											?>
 
-												<option <?php echo set_select('serviceprovider', $serviceprovider['id'], $selected); ?> value="<?php echo $serviceprovider['id']; ?>"><?php echo $serviceprovider['ServiceProvidername']; ?></option>
-										<?php }
-										} ?>
-									</select>
-									<?php echo form_error('serviceprovider') ?>
-									<div class="help-block"></div>
+													<option <?php echo set_select('serviceprovider', $serviceprovider['id'], $selected); ?> value="<?php echo $serviceprovider['id']; ?>"><?php echo $serviceprovider['ServiceProvidername']; ?></option>
+											<?php }
+											} ?>
+										</select>
+										<?php echo form_error('serviceprovider') ?>
+										<div class="help-block"></div>
+									</div>
 								</div>
-							</div>
 
-							<div class="form-group">
-								<label>Logo <span class="text-danger">*</span></label>
-								<div class="controls">
-									<input type="file" name="image" class="form-control <?php echo (!empty($errorImageUpload)) ? 'is-invalid' : '' ?>">
-									<?php echo (!empty($errorImageUpload)) ? $errorImageUpload : ''; ?>
-									<?php echo $edit != NULL ? '<img src="' . base_url() . 'uploads/service/thumb/' . $edit['logo'] . ' " alt="">' : ''; ?>
-									<div class="help-block"></div>
+								<div class="form-group">
+									<label>Logo </label>
+									<div class="controls">
+										<input type="file" name="image" class="form-control <?php echo (!empty($errorImageUpload)) ? 'is-invalid' : '' ?>">
+										<?php echo (!empty($errorImageUpload)) ? $errorImageUpload : ''; ?>
+										<?php echo $edit != NULL ? '<img src="' . base_url() . 'uploads/service/thumb/' . $edit['logo'] . ' " alt="">' : ''; ?>
+										<div class="help-block"></div>
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<label>Status</label>
-								<div class="custom-control custom-switch">
-									<input type="checkbox" class="custom-control-input" id="customSwitch1" name="status" <?php echo $edit != NULL ? $edit['status'] == NULL ? '' :  'value="1" checked' : 'value="1" checked';
-																															'';
-																															?>>
-									<label class="custom-control-label" for="customSwitch1">Active</label>
+								<div class="form-group">
+									<label>Status</label>
+									<div class="custom-control custom-switch">
+										<input type="checkbox" class="custom-control-input" id="customSwitch1" name="status" <?php echo $edit != NULL ? $edit['status'] == NULL ? '' :  'value="1" checked' : 'value="1" checked';
+																																'';
+																																?>>
+										<label class="custom-control-label" for="customSwitch1">Active</label>
+									</div>
 								</div>
+								<button type="submit" class="btn btn-success">Submit</button>
 							</div>
-							<button type="submit" class="btn btn-success">Submit</button>
 						</div>
-					</div>
-				</div>
-				<div class="col-sm-12 col-md-12 col-lg-8">
+					</div><?php } ?>
+				<div class="col-sm-12 col-md-12 <?php if ('0' == $this->session->userdata('status')) {  ?> col-lg-8 <?php } ?>">
 					<div class="card">
 						<div class="card-body">
 							<h4 class="card-title">List of Service</h4>
@@ -115,8 +116,8 @@
 												<tr>
 													<td><img src="<?php echo base_url() . 'uploads/service/thumb/' . $service['logo']; ?>" alt=""></td>
 													<td><?php echo  $service['service']; ?> <br>
-														<a href="<?php echo base_url() . 'super/service/edit/' . $service['id']; ?>" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-edit"></i>Edit</a>
-														<a href="javascript::void(0)" onclick="deleteservice(<?php echo $service['id']; ?>);" class="jsgrid-button jsgrid-delete-button"><i class="fas fa-trash-alt"></i>Delete</a>
+														<?php if ('0' == $this->session->userdata('status')) {  ?> <a href="<?php echo base_url() . 'super/service/edit/' . $service['id']; ?>" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-edit"></i></a>
+															<a href="javascript::void(0)" onclick="deleteservice(<?php echo $service['id']; ?>);" class="jsgrid-button jsgrid-delete-button"><i class="fas fa-trash-alt"></i></a> <?php } ?>
 													</td>
 													<td><?php if (!empty($serviceproviders)) {
 															foreach ($serviceproviders as $serviceprovider) {

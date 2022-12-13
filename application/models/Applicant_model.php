@@ -6,32 +6,32 @@ class Applicant_model extends CI_Model
 
 	public function create($formArray)
 	{
-		$this->db->insert('user', $formArray);
+		$this->db->insert('enquiry', $formArray);
 
 		//print_r($formArray);
 	}
 
 	public function users()
 	{
-		$this->db->where('role', 3);
-		return $this->db->get('user')->result_array();
+
+		return $this->db->get('enquiry')->result_array();
 	}
 
 	public function getUser($id)
 	{
 		$this->db->where('id', $id);
-		return $this->db->get('user')->row_array();
+		return $this->db->get('enquiry')->row_array();
 	}
 	public function update($formArray, $id)
 	{
 		$this->db->where('id', $id);
-		$this->db->update('user', $formArray);
+		$this->db->update('enquiry', $formArray);
 	}
 	public function delete($id)
 	{
 		$this->db->where('id', $id);
 
-		$this->db->delete('user');
+		$this->db->delete('enquiry');
 	}
 	public function roles()
 	{

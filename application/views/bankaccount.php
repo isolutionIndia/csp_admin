@@ -49,8 +49,8 @@
 							<div class="form-group">
 								<label>Bank Account Name <span class="text-danger">*</span></label>
 								<div class="controls">
-									<input type="text" name="accountname" class="form-control <?php echo (form_error('accountname') != "") ? 'is-invalid' : '' ?>" value="<?php $accountname = $edit != NULL ? $edit['accountname'] : '';
-																																											echo set_value('accountname', $accountname); ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
+									<input type="text" style="text-transform:uppercase;" name="accountname" class="form-control <?php echo (form_error('accountname') != "") ? 'is-invalid' : '' ?>" value="<?php $accountname = $edit != NULL ? $edit['accountname'] : '';
+																																																			echo set_value('accountname', $accountname); ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
 									<div class="help-block"></div>
 								</div>
 							</div>
@@ -65,8 +65,8 @@
 							<div class="form-group">
 								<label>Bank IFSC <span class="text-danger">*</span></label>
 								<div class="controls">
-									<input type="text" id="ifsc" name="ifsc" class="form-control <?php echo (form_error('ifsc') != "") ? 'is-invalid' : '' ?>" value="<?php $ifsc = $edit != NULL ? $edit['ifsc'] : '';
-																																										echo set_value('ifsc', $ifsc) ?>" placeholder="ifsc No." required="" data-validation-required-message="This is required" aria-invalid="false">
+									<input type="text" style="text-transform:uppercase;" minlength="9" maxlength="9" id="ifsc" name="ifsc" class="form-control <?php echo (form_error('ifsc') != "") ? 'is-invalid' : '' ?>" value="<?php $ifsc = $edit != NULL ? $edit['ifsc'] : '';
+																																																									echo set_value('ifsc', $ifsc) ?>" placeholder="ifsc No." required="" data-validation-required-message="This is required" aria-invalid="false">
 									<div class="help-block"></div>
 								</div>
 							</div>
@@ -81,12 +81,28 @@
 							<div class="form-group">
 								<label>Branch Name <span class="text-danger">*</span></label>
 								<div class="controls">
-									<input type="text" id="branchname" name="branchname" class="form-control <?php echo (form_error('branchname') != "") ? 'is-invalid' : '' ?>" value="<?php $branchname = $edit != NULL ? $edit['branchname'] : '';
-																																														echo set_value('branchname', $branchname) ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
+									<input type="text" style="text-transform:uppercase;" id="branchname" name="branchname" class="form-control <?php echo (form_error('branchname') != "") ? 'is-invalid' : '' ?>" value="<?php $branchname = $edit != NULL ? $edit['branchname'] : '';
+																																																							echo set_value('branchname', $branchname) ?>" required="" data-validation-required-message="This is required" aria-invalid="false">
 									<div class="help-block"></div>
 								</div>
 							</div>
+							<div class="form-group">
+								<h5>Service Provider<span class="text-danger">*</span></h5>
+								<div class="controls">
+									<select name="serviceprovider" id="serviceprovider" class="form-control <?php echo (form_error('serviceprovider')) ? 'is-invalid' : '' ?>" required="" class="form-control" aria-invalid="false">
+										<?php if (!empty($serviceproviders)) {
+											foreach ($serviceproviders as $serviceprovider) {
+												$selected = ($serviceprovider['id'] == $edit['serviceprovider']) ? true : false;
+										?>
 
+												<option <?php echo set_select('serviceprovider', $serviceprovider['id'], $selected); ?> value="<?php echo $serviceprovider['id']; ?>"><?php echo $serviceprovider['ServiceProvidername']; ?></option>
+										<?php }
+										} ?>
+									</select>
+									<?php echo form_error('serviceprovider') ?>
+									<div class="help-block"></div>
+								</div>
+							</div>
 							<div class="form-group">
 								<label>Status</label>
 								<div class="custom-control custom-switch">
@@ -114,6 +130,7 @@
 											<th>Bank IFSC</th>
 											<th>Bank Name</th>
 											<th>Branch Name</th>
+											<th>Service Provider</th>
 											<th class="text-center">Status</th>
 
 										</tr>
@@ -124,13 +141,21 @@
 												<tr>
 
 													<td><?php echo  $bankaccount['accountname']; ?> <br>
-														<a href="<?php echo base_url() . 'super/bankaccount/edit/' . $bankaccount['id']; ?>" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-edit"></i>Edit</a>
-														<a href="javascript::void(0)" onclick="deletebankaccount(<?php echo $bankaccount['id']; ?>);" class="jsgrid-button jsgrid-delete-button"><i class="fas fa-trash-alt"></i>Delete</a>
+														<a href="<?php echo base_url() . 'super/bankaccount/edit/' . $bankaccount['id']; ?>" class="jsgrid-button jsgrid-edit-button"><i class="fas fa-edit"></i></a>
+														<a href="javascript::void(0)" onclick="deletebankaccount(<?php echo $bankaccount['id']; ?>);" class="jsgrid-button jsgrid-delete-button"><i class="fas fa-trash-alt"></i></a>
 													</td>
 													<td><?php echo  $bankaccount['accountno']; ?></td>
 													<td><?php echo  $bankaccount['ifsc']; ?></td>
 													<td><?php echo  $bankaccount['bankname']; ?></td>
 													<td><?php echo  $bankaccount['branchname']; ?></td>
+													<td><?php if (!empty($serviceproviders)) {
+															foreach ($serviceproviders as $serviceprovider) {
+																if ($serviceprovider['id'] ==  $bankaccount['serviceprovider']) {
+																	echo $serviceprovider['ServiceProvidername'];
+																}
+															}
+														} ?>
+													</td>
 													<td class="text-center"><span <?php echo $bankaccount['status'] ? 'class=" label label-success ">Active ' :  'class=" label label-danger ">Inactive'; ?></span></td>
 
 												</tr>
